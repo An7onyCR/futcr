@@ -1,0 +1,180 @@
+{
+  "teams_stats": {
+    "saprissa": {
+      "last_matches": [
+        {
+          "opponent": "Alajuelense",
+          "result": "W",
+          "score": "2-1",
+          "date": "2024-02-15"
+        },
+        {
+          "opponent": "Herediano",
+          "result": "D",
+          "score": "1-1",
+          "date": "2024-02-08"
+        },
+        {
+          "opponent": "Cartaginés",
+          "result": "W",
+          "score": "3-0",
+          "date": "2024-02-01"
+        }
+      ],
+      "top_scorers": [
+        {
+          "name": "Ariel Rodríguez",
+          "goals": 12
+        },
+        {
+          "name": "Javon East",
+          "goals": 9
+        },
+        {
+          "name": "Warren Madrigal",
+          "goals": 7
+        }
+      ],
+      "season_stats": {
+        "matches_played": 15,
+        "wins": 10,
+        "draws": 3,
+        "losses": 2,
+        "goals_scored": 32,
+        "goals_conceded": 12
+      }
+    },
+    "liga": {
+      "last_matches": [
+        {
+          "opponent": "Saprissa",
+          "result": "L",
+          "score": "1-2",
+          "date": "2024-02-15"
+        },
+        {
+          "opponent": "Cartaginés",
+          "result": "W",
+          "score": "2-0",
+          "date": "2024-02-08"
+        },
+        {
+          "opponent": "Herediano",
+          "result": "W",
+          "score": "3-1",
+          "date": "2024-02-01"
+        }
+      ],
+      "top_scorers": [
+        {
+          "name": "Johan Venegas",
+          "goals": 11
+        },
+        {
+          "name": "Carlos Mora",
+          "goals": 8
+        },
+        {
+          "name": "Jonathan Moya",
+          "goals": 7
+        }
+      ],
+      "season_stats": {
+        "matches_played": 15,
+        "wins": 9,
+        "draws": 4,
+        "losses": 2,
+        "goals_scored": 28,
+        "goals_conceded": 14
+      }
+    },
+    "herediano": {
+      "last_matches": [
+        {
+          "opponent": "Cartaginés",
+          "result": "W",
+          "score": "2-0",
+          "date": "2024-02-15"
+        },
+        {
+          "opponent": "Saprissa",
+          "result": "D",
+          "score": "1-1",
+          "date": "2024-02-08"
+        },
+        {
+          "opponent": "Alajuelense",
+          "result": "L",
+          "score": "1-3",
+          "date": "2024-02-01"
+        }
+      ],
+      "top_scorers": [
+        {
+          "name": "Francisco Rodríguez",
+          "goals": 9
+        },
+        {
+          "name": "Elías Aguilar",
+          "goals": 7
+        },
+        {
+          "name": "Yendrick Ruiz",
+          "goals": 6
+        }
+      ],
+      "season_stats": {
+        "matches_played": 15,
+        "wins": 8,
+        "draws": 5,
+        "losses": 2,
+        "goals_scored": 24,
+        "goals_conceded": 15
+      }
+    },
+    "cartago": {
+      "last_matches": [
+        {
+          "opponent": "Herediano",
+          "result": "L",
+          "score": "0-2",
+          "date": "2024-02-15"
+        },
+        {
+          "opponent": "Alajuelense",
+          "result": "L",
+          "score": "0-2",
+          "date": "2024-02-08"
+        },
+        {
+          "opponent": "Saprissa",
+          "result": "L",
+          "score": "0-3",
+          "date": "2024-02-01"
+        }
+      ],
+      "top_scorers": [
+        {
+          "name": "Marcel Hernández",
+          "goals": 10
+        },
+        {
+          "name": "Allen Guevara",
+          "goals": 5
+        },
+        {
+          "name": "Diego Sánchez",
+          "goals": 4
+        }
+      ],
+      "season_stats": {
+        "matches_played": 15,
+        "wins": 6,
+        "draws": 3,
+        "losses": 6,
+        "goals_scored": 18,
+        "goals_conceded": 20
+      }
+    }
+  }
+}

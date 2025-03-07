@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fútbol CR - Registro de Usuarios</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="hero-section">
+        <div class="overlay"></div>
+        <div class="hero-content">
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="auth-container" class="login-register-container">
+            <div class="card">
+                <div class="card-header">
+                    <h2 id="form-title">Inicio de Sesión</h2>
+                </div>
+                
+                <div class="form-container">
+                    <form id="login-form" class="show">
+                        <div class="input-group">
+                            <label for="login-email">Correo Electrónico:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="login-email" placeholder="ejemplo@correo.com" required>
+                            </div>
+                            <div class="error-message" id="login-email-error">Ingrese un correo electrónico válido</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="login-password">Contraseña:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="login-password" placeholder="Contraseña" required>
+                                <i class="fas fa-eye toggle-password" id="toggle-password-login"></i>
+                            </div>
+                            <div class="error-message" id="login-password-error">La contraseña debe tener al menos 6 caracteres</div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            Ingresar
+                        </button>
+                        
+                        <div class="error-message" id="login-form-error">Error al iniciar sesión</div>
+                        
+                        <div class="account-message">
+                            <p>¿No tienes una cuenta? <a href="#" id="switch-to-register">Regístrate</a></p>
+                        </div>
+                    </form>
+                    
+                    <form id="register-form">
+                        <div class="input-group">
+                            <label for="register-name">Nombre Completo:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="register-name" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="error-message" id="register-name-error">Ingrese su nombre completo</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="register-email">Correo Electrónico:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="register-email" placeholder="ejemplo@correo.com" required>
+                            </div>
+                            <div class="error-message" id="register-email-error">Ingrese un correo electrónico válido</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="register-password">Contraseña:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" required>
+                                <i class="fas fa-eye toggle-password" id="toggle-password-register"></i>
+                            </div>
+                            <div class="error-message" id="register-password-error">La contraseña debe tener al menos 6 caracteres</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="register-confirm-password">Confirmar Contraseña:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="register-confirm-password" placeholder="Repetir contraseña" required>
+                                <i class="fas fa-eye toggle-password" id="toggle-password-confirm"></i>
+                            </div>
+                            <div class="error-message" id="register-confirm-password-error">Las contraseñas no coinciden</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="favorite-team">Equipo Favorito:</label>
+                            <div class="select-wrapper">
+                                <select id="favorite-team" required>
+                                    <option value="">Seleccionar Equipo</option>
+                                    <option value="saprissa">Deportivo Saprissa</option>
+                                    <option value="liga">Liga Deportiva Alajuelense</option>
+                                    <option value="herediano">Club Sport Herediano</option>
+                                    <option value="cartago">Club Sport Cartaginés</option>
+                                    <option value="cr">Federación Costarricense de Fútbol</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="error-message" id="favorite-team-error">Seleccione su equipo favorito</div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            Registrarse
+                        </button>
+                        
+                        <div class="error-message" id="register-form-error">Error al registrarse</div>
+                        
+                        <div class="account-message">
+                            <p>¿Ya tienes una cuenta? <a href="#" id="switch-to-login">Inicia sesión</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div id="team-info" class="team-info">
+            <div class="welcome-message" id="welcome-user">¡Bienvenido! Aquí está la información de tu equipo favorito</div>
+            
+            <!-- Vista del equipo: Deportivo Saprissa -->
+            <div class="team-card team-detail-card" id="saprissa-info">
+                <div class="team-detail-layout">
+                    <!-- Columna izquierda con información principal -->
+                    <div class="team-main-info">
+                        <h2>Deportivo<br>Saprissa</h2>
+                        <img src="frontend/Images/Escudo_del_Deportivo_Saprissa.png" alt="Deportivo Saprissa" class="team-main-image">
+                        <p class="team-slogan">"El rey de copas"</p>
+                        <p class="team-slogan">"Morados"</p>
+                    </div>
+
+                    <!-- Columna central con historial -->
+                    <div class="team-section trophy-section">
+                        <div class="section-header">
+                            <i class="fas fa-trophy"></i>
+                            <span> Historial </span>
+                        </div>
+                        <ul class="trophy-list">
+                            <li>40 títulos de Primera División</li>
+                            <li>3 títulos de Concacaf</li>
+                            <li>7 Titulos de copa Costa Rica</li>
+                            <li>1 Tercer lugar en el Mundial de Clubes 2005</li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna de planilla actual -->
+                    <div class="team-section squad-section">
+                        <div class="section-header">
+                            <i class="fas fa-futbol"></i> Planilla Actual
+                        </div>
+                        <ul class="squad-list">
+                            <li>Entrenador: Paulo Wanchope</li>
+                            <li>Esteban Alvarado (PO)</li>
+                            <li>Ryan Bolanos (DEF)</li>
+                            <li>Oscar Duarte (DEF)</li>
+                            <li>Kendall Waston (DEF)</li>
+                            <li>Fidel Escobar (DEF)</li>
+                            <li>Mariano Torres (MC)</li>
+                            <li>Gerson Torres (MC)</li>
+                            <li>Jefferson Brenes (MC)</li>
+                            <li>Ariel Rodriguez (ED)</li>
+                            <li>Nicolas Delgadillo (EI)</li>
+                            <li>Sabin Merino (DC)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna derecha con jugadores legendarios -->
+                <div class="team-section players-section">
+                    <div class="section-header">
+                        <i class="fas fa-star"></i> Jugadores Legendarios
+                    </div>
+                    <div class="player-grid">
+                        <div class="player-card">
+                            <img src="frontend/Images/Alonso_Solís_in_August_2007.jpg" alt="Alonso Solís" class="player-image">
+                            <p>Alonso "El Mariachi" Solís</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Gabriel_Badilla.jpg" alt="Gabriel Badilla" class="player-image">
+                            <p>Gabriel Badilla</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Walter_Centeno_2016.jpg" alt="Walter Centeno" class="player-image">
+                            <p>Walter "El Pate" Centeno</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+        <div class="audio-player">
+        <button class="audio-btn" onclick="toggleAudio('saprissa-audio')">
+            <i class="fas fa-play play-icon"></i>
+            <i class="fas fa-pause pause-icon" style="display: none;"></i>
+            <span>Escuchar Musica</span>
+        </button>
+        <audio id="saprissa-audio" src="frontend/Audios/Viva Saprissa!! - La Ultra Morada - La S.mp3"></audio>
+        </div>
+                
+                <!-- Pie de página con derechos reservados -->
+                <div class="team-footer">
+                    <p>© 2025 Deportivo Saprissa. Todos los derechos reservados.</p>
+                </div>
+            </div>
+            
+            <!-- Vista moderna para Liga Deportiva Alajuelense -->
+            <div class="team-card team-detail-card" id="liga-info">
+                <div class="team-detail-layout">
+                    <!-- Columna izquierda con información principal -->
+                    <div class="team-main-info">
+                        <h2>Liga Deportiva Alajuelense</h2>
+                        <img src="frontend/Images/Escudo_de_la_Liga_Deportiva_Alajuelense.png" alt="Liga Deportiva Alajuelense" class="team-main-image">
+                        <p class="team-slogan">"El Equipo de su Gente"</p>
+                        <p class="team-slogan">"Manudos"</p>
+                    </div>
+
+                    <!-- Columna central con historial -->
+                    <div class="team-section trophy-section">
+                        <div class="section-header">
+                            <i class="fas fa-trophy"></i> 
+                            <span>Historial</span>
+                        </div>
+                        <ul class="trophy-list">
+                            <li>30 títulos de Primera División</li>
+                            <li>2 títulos de Concacaf</li>
+                            <li>11 Torneos de Copa</li>
+                            <li>2 SuperCopas de Costa Rica</li>
+                            <li>5 Copas Centroamericanas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna con jugadores legendarios y planilla actual -->
+                    <div class="team-section squad-section">
+                        <div class="section-header">
+                            <i class="fas fa-futbol"></i>
+                            <span>Planilla Actual</span>
+                        </div>
+                        <ul class="squad-list">
+                            <li>Entrenador: Alexander Guimaraes</li>
+                            <li>Washington Ortega (PO)</li>
+                            <li>Carlos Martinez (DEF)</li>
+                            <li>Fernando Pinar (DEF)</li>
+                            <li>Santiago Van der Putten (DEF)</li>
+                            <li>Alexis Gamboa (DEF)</li>
+                            <li>Celso Borges (MC)</li>
+                            <li>Aaron Suarez (MC)</li>
+                            <li>Larry Angulo (MC)</li>
+                            <li>Anderson Cardoso (ED)</li>
+                            <li>Diego Campos (EI)</li>
+                            <li>Alberto Toril (DC)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 1rem; padding: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.2); border-bottom: none;">
+                    <i class="fas fa-star"></i>
+                    <span>Jugadores Legendarios</span>
+                </div>
+                
+                <div style="padding: 0 2rem 2rem 2rem;">
+                    <div class="player-grid">
+                        <div class="player-card">
+                            <img src="frontend/Images/579_morera_alejandro.jpg" alt="Alejandro Morera Soto" class="player-image">
+                            <p>Alejandro Morera Soto "El mago del Balon</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/1995-96-6-813x1024.jpg" alt="Froylan Ledezma" class="player-image">
+                            <p>Froylan "El cachorro" Ledezma</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Captura de pantalla 2025-03-05 153103.png" alt="Wílmer López" class="player-image">
+                            <p>Wílmer "El Pato" López</p>
+                        </div>
+                    </div>
+                </div>
+
+        <div class="audio-player">
+            <button class="audio-btn" onclick="toggleAudio('lda-audio')">
+            <i class="fas fa-play play-icon"></i>
+            <i class="fas fa-pause pause-icon" style="display: none;"></i>
+            <span>Escuchar Cancion</span>
+            </button>
+            <audio id="lda-audio" src="frontend/Audios/Oye  Canción de Liga Deportiva Alajuelense  Retro - profesergiocm_pasatiempos.mp3"></audio>
+        </div>
+                
+                <!-- Pie de página con derechos reservados -->
+                <div class="team-footer">
+                    <p>© 2025 Liga Deportiva Alajuelense. Todos los derechos reservados.</p>
+                </div>
+            </div>
+            
+            <!-- Vista del equipo: Club Sport Herediano (Plantilla para que agregues más equipos) -->
+            <div class="team-card team-detail-card hidden" id="herediano-info">
+                <div class="team-detail-layout">
+                    <!-- Columna izquierda con información principal -->
+                    <div class="team-main-info">
+                        <h2>Club Sport<br>Herediano</h2>
+                        <img src="frontend/Images/Escudo_del_Club_Sport_Herediano.svg.png" alt="Club Sport Herediano" class="team-main-image">
+                        <p class="team-slogan">"El Team"</p>
+                        <p class="team-slogan">"Florenses"</p>
+                    </div>
+
+                    <!-- Columna central con historial -->
+                    <div class="team-section trophy-section">
+                        <div class="section-header">
+                            <i class="fas fa-trophy"></i> Historial
+                        </div>
+                        <ul class="trophy-list">
+                            <li>30 títulos de Primera División</li>
+                            <li>1 título de Concacaf League</li>
+                            <li>Subcampeón de Concacaf 2018</li>
+                            <li>3 Copas Centroamericanas</li>
+                        </ul>
+                    </div>
+
+                     <!-- Columna de planilla actual -->
+                     <div class="team-section squad-section">
+                        <div class="section-header">
+                            <i class="fas fa-futbol"></i> Planilla Actual
+                        </div>
+                        <ul class="squad-list">
+                            <li>Entrenador: Alexander Vargas </li>
+                            <li>Dany Carvajal (PO)</li>
+                            <li>Getsel Montes (DEF) </li>
+                            <li>Keyner Brown (DEF)</li>
+                            <li>Darril Araya(DEF) </li>
+                            <li>Haxzel Quiros (DEF)</li>
+                            <li>Yeltsin Tejeda (MC)</li>
+                            <li>Allan Cruz (MC)</li>
+                            <li>Elias Aguilar (MC)</li>
+                            <li>Emerson Bravo (ED)</li> 
+                            <li>Ronaldo Araya (EI)</li>    
+                            <li>Marcel Hernandez (DC)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Columna derecha con jugadores legendarios -->
+                <div class="team-section players-section">
+                    <div class="section-header">
+                        <i class="fas fa-star"></i> Jugadores Legendarios
+                    </div>
+                    <div class="player-grid">
+                        <div class="player-card">
+                            <img src="frontend/Images/Jafet_Soto_2020.jpg" alt="Jafet Soto" class="player-image">
+                            <p>Jafet Soto</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/190301_med_claudio_jara.jpg" alt="Claudio Jara" class="player-image">
+                            <p>Claudio Jara</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Captura de pantalla 2025-03-05 155922.png" alt="Víctor Núñez" class="player-image">
+                            <p>Víctor "El Mambo" Núñez</p>
+                        </div>
+                    </div>
+                </div>
+
+
+        <div class="audio-player">
+            <button class="audio-btn" onclick="toggleAudio('heredia-audio')">
+            <i class="fas fa-play play-icon"></i>
+            <i class="fas fa-pause pause-icon" style="display: none;"></i>
+            <span>Escuchar Cancion</span>
+            </button>
+            <audio id="heredia-audio" src="frontend/Audios/Club Sport Herediano - Ninguno pudo con él (2010 - 2019) - Jagnarock.mp3"></audio>
+        </div>
+
+                <!-- Pie de página con derechos reservados -->
+                <div class="team-footer">
+                    <p>© 2025 Club Sport Herediano. Todos los derechos reservados.</p>
+                </div>
+            </div>
+            
+            <!-- Vista del equipo: Cartago --> 
+            <div class="team-card team-detail-card hidden" id="cartago-info">
+                <div class="team-detail-layout">
+                    <div class="team-main-info">
+                        <h2>Club Sport<br>Cartaginés</h2>
+                        <img src="frontend/Images/Escudo_del_Club_Sport_Cartaginés.svg.png" alt="Club Sport Cartaginés" class="team-main-image">
+                        <p class="team-slogan">"BlanquiAzules"</p>
+                        <p class="team-slogan">"Brumosos"</p>
+                    </div>
+
+                    <!-- Columna central con historial -->
+                    <div class="team-section trophy-section">
+                        <div class="section-header">
+                            <i class="fas fa-trophy"></i> Historial
+                        </div>
+                        <ul class="trophy-list">
+                            <li>9 títulos de Primera División</li>
+                            <li>5 títulos de Copa Costa Rica</li>
+                            <li>1 liga de campeones de la Concacaf</li>
+                            <li>1 SuperCopa Costa Rica</li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna de planilla actual -->
+                    <div class="team-section squad-section">
+                        <div class="section-header">
+                            <i class="fas fa-futbol"></i> Planilla Actual
+                        </div>
+                        <ul class="squad-list">
+                            <li>Entrenador: Andres Carevic </li>
+                            <li>Kevin Briceno (PO)</li>
+                            <li>Marcelo Pereira (DEF) </li>
+                            <li>Wiliam Quiros (DEF)</li>
+                            <li>Diego Mesen(DEF) </li>
+                            <li>Randal Cordero (DEF)</li>
+                            <li>Bernald Alfaro (MC)</li>
+                            <li>Allen Guevara (MC)</li>
+                            <li>Cristopher Nunez (MC)</li>
+                            <li>Jeikel Venegas (ED)</li> 
+                            <li>Kenyel Michel (EI)</li>    
+                            <li>Marcos Urena (DC)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Columna derecha con jugadores legendarios -->
+                <div class="team-section players-section">
+                    <div class="section-header">
+                        <i class="fas fa-star"></i> Jugadores Legendarios
+                    </div>
+                    <div class="player-grid">
+                        <div class="player-card">
+                            <img src="frontend/Images/Fello30.jpg" alt="Fello Meza" class="player-image">
+                            <p>Fello Meza</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Captura de pantalla 2025-03-05 162105.png" alt="Marcel Hernandez" class="player-image">
+                            <p>Marcel Hernandez </p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Captura de pantalla 2025-03-05 162238.png" alt="chiqui" class="player-image">
+                            <p>Randall "El chiqui" Brenes</p>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- Agregar esto dentro de cada tarjeta de equipo, antes del footer -->
+          <div class="audio-player">
+             <button class="audio-btn" onclick="toggleAudio('cartago-audio')">
+            <i class="fas fa-play play-icon"></i>
+            <i class="fas fa-pause pause-icon" style="display: none;"></i>
+            <span>Escuchar Cancion</span>
+            </button>
+             <audio id="cartago-audio" src="frontend/Audios/Vive Vive Cartago Vive - Fabri Gonzalez.mp3"></audio>
+        </div>
+
+
+                <!-- Pie de página con derechos reservados -->
+                <div class="team-footer">
+                    <p>© 2025 Club Sport Cartaginés. Todos los derechos reservados.</p>
+                </div>
+            </div>
+
+             <!-- Vista del equipo: Federacion Costarricense --> 
+             <div class="team-card team-detail-card hidden" id="cr-info">
+                <div class="team-detail-layout">
+                    <div class="team-main-info">
+                        <h2>Federacion Costarricense de <br>futbol</h2>
+                        <img src="frontend/Images/Costa_Rica_national_football_team_logo.svg.png" alt="Federacion Costa Rica" class="team-main-image">
+                        <p class="team-slogan">"La Sele"</p>
+                        <p class="team-slogan">"La Tricolor"</p>
+                    </div>
+
+                    <!-- Columna central con historial -->
+                    <div class="team-section trophy-section">
+                        <div class="section-header">    
+                            <i class="fas fa-trophy"></i> Historial
+                        </div>
+                        <ul class="trophy-list">
+                            <li>6 Participaciones en Mundiales</li>
+                            <li>1 Cuartos de final mundial Brasil 2014</li>
+                            <li>3 Campeones de Copa Oro</li>
+                            <li>2 Cuartos de final Copa America</li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna de planilla actual -->
+                    <div class="team-section squad-section">
+                        <div class="section-header">
+                            <i class="fas fa-futbol"></i> Planilla Actual
+                        </div>
+                        <ul class="squad-list">
+                            <li>Entrenador: Miguel "El Piojo" Herrera </li>
+                            <li>Patrick Sequeira (PO)</li>
+                            <li>Jeyland Mitchell (DEF) </li>
+                            <li>Francisco Calvo (DEF)</li>
+                            <li>Fernan Faeron (DEF) </li>
+                            <li>Joseph Mora (DEF)</li>
+                            <li>Alejandro Bran (MC)</li>
+                            <li>Rashir Parkins (MC)</li>
+                            <li>Sebastian Acuna (MC)</li>
+                            <li>Anthony Hernandez (ED)</li> 
+                            <li>Andy Rojas (EI)</li>    
+                            <li>Manfred Ugalde (DC)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Columna derecha con jugadores legendarios -->
+                <div class="team-section players-section">
+                    <div class="section-header">
+                        <i class="fas fa-star"></i> Jugadores Legendarios
+                    </div>
+                    <div class="player-grid">
+                        <div class="player-card">
+                            <img src="frontend/Images/Keylor_Navas_2018_(cropped).jpg" alt="Keylor Navas" class="player-image">
+                            <p>Keylor Navas</p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/Paulo_Wanchope.jpg" alt="Wanchope" class="player-image">
+                            <p>Paulo Cesar Wanchope </p>
+                        </div>
+                        <div class="player-card">
+                            <img src="frontend/Images/E3j9M1eUYAIxV4P.jpg" alt="medford" class="player-image">
+                            <p>Hernan Medford</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="audio-player">
+                    <button class="audio-btn" onclick="toggleAudio('cr-audio')">
+                   <i class="fas fa-play play-icon"></i>
+                   <i class="fas fa-pause pause-icon" style="display: none;"></i>
+                   <span>Escuchar Cancion</span>
+                   </button>
+                    <audio id="cr-audio" src="frontend/Audios/Agárrense de las Manos - Selección de fútbol de Costa Rica. - Nación Morada.mp3"></audio>
+               </div>
+       
+
+                <!-- Pie de página con derechos reservados -->
+                <div class="team-footer">
+                    <p>© 2025 Federacion Costarricense de futbol. Todos los derechos reservados.</p>
+                </div>
+            </div>
+
+            <!-- Botón de cerrar sesión -->
+            <button id="logout-btn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div> <!-- Cierre del div team-info -->
+        
+    </div> <!-- Cierre del div container -->
+    
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Liga Promerica - Fútbol de Costa Rica. Todos los derechos reservados - Antony Alfaro Examen #1 Progra IV</p>
+        </div>
+        
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<!-- Inicializar Firebase -->
+<script>
+    // Tu configuración de Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyADQv0ZMTn2eF7qJCsddK-iyFu1wfztb2U",
+        authDomain: "ligapromericaregister.firebaseapp.com",
+        projectId: "ligapromericaregister",
+        storageBucket: "ligapromericaregister.appspot.com", // Corregido
+        messagingSenderId: "829570742820",
+        appId: "1:829570742820:web:0880d4dc0c16da6c0736b1"
+    };
+    
+    // Inicializar Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    // Verificar disponibilidad de servicios
+    console.log("Firebase Auth disponible:", !!firebase.auth);
+    console.log("Firebase Firestore disponible:", !!firebase.firestore);
+</script>
+
+<!-- Tu script principal se carga después de inicializar Firebase -->
+<script src="script.js"></script>
+
+</body>
+</html> 
