@@ -108,6 +108,23 @@
                             </div>
                             <div class="error-message" id="favorite-team-error">Seleccione su equipo favorito</div>
                         </div>
+
+                        <div class="input-group">
+                            <label for="register-birthdate">Fecha de Nacimiento:</label>
+                            <div class="input-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="date" id="register-birthdate" required>
+                            </div>
+                            <div class="error-message" id="register-birthdate-error">Debe ser mayor de 18 años</div>
+                        </div>
+                        
+                        <div class="input-group checkbox-group">
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="terms-checkbox" required>
+                                <label for="terms-checkbox">Acepto los <a href="#" id="terms-link">términos y condiciones</a></label>
+                            </div>
+                            <div class="error-message" id="terms-checkbox-error">Debe aceptar los términos y condiciones</div>
+                        </div>
                         
                         <button type="submit" class="btn-primary">
                             Registrarse
@@ -126,10 +143,10 @@
         <div id="team-info" class="team-info">
             <div class="welcome-message" id="welcome-user">¡Bienvenido! Aquí está la información de tu equipo favorito</div>
             
-            <!-- Vista del equipo: Deportivo Saprissa -->
+         
             <div class="team-card team-detail-card" id="saprissa-info">
                 <div class="team-detail-layout">
-                    <!-- Columna izquierda con información principal -->
+                   
                     <div class="team-main-info">
                         <h2>Deportivo<br>Saprissa</h2>
                         <img src="frontend/Images/Escudo_del_Deportivo_Saprissa.png" alt="Deportivo Saprissa" class="team-main-image">
@@ -173,7 +190,7 @@
                     </div>
                 </div>
 
-                <!-- Columna derecha con jugadores legendarios -->
+              
                 <div class="team-section players-section">
                     <div class="section-header">
                         <i class="fas fa-star"></i> Jugadores Legendarios
@@ -205,16 +222,16 @@
         <audio id="saprissa-audio" src="frontend/Audios/Viva Saprissa!! - La Ultra Morada - La S.mp3"></audio>
         </div>
                 
-                <!-- Pie de página con derechos reservados -->
+                
                 <div class="team-footer">
                     <p>© 2025 Deportivo Saprissa. Todos los derechos reservados.</p>
                 </div>
             </div>
             
-            <!-- Vista moderna para Liga Deportiva Alajuelense -->
+           
             <div class="team-card team-detail-card" id="liga-info">
                 <div class="team-detail-layout">
-                    <!-- Columna izquierda con información principal -->
+              
                     <div class="team-main-info">
                         <h2>Liga Deportiva Alajuelense</h2>
                         <img src="frontend/Images/Escudo_de_la_Liga_Deportiva_Alajuelense.png" alt="Liga Deportiva Alajuelense" class="team-main-image">
@@ -237,7 +254,6 @@
                         </ul>
                     </div>
 
-                    <!-- Columna con jugadores legendarios y planilla actual -->
                     <div class="team-section squad-section">
                         <div class="section-header">
                             <i class="fas fa-futbol"></i>
@@ -291,16 +307,15 @@
             <audio id="lda-audio" src="frontend/Audios/Oye  Canción de Liga Deportiva Alajuelense  Retro - profesergiocm_pasatiempos.mp3"></audio>
         </div>
                 
-                <!-- Pie de página con derechos reservados -->
+               
                 <div class="team-footer">
                     <p>© 2025 Liga Deportiva Alajuelense. Todos los derechos reservados.</p>
                 </div>
             </div>
             
-            <!-- Vista del equipo: Club Sport Herediano (Plantilla para que agregues más equipos) -->
             <div class="team-card team-detail-card hidden" id="herediano-info">
                 <div class="team-detail-layout">
-                    <!-- Columna izquierda con información principal -->
+                
                     <div class="team-main-info">
                         <h2>Club Sport<br>Herediano</h2>
                         <img src="frontend/Images/Escudo_del_Club_Sport_Herediano.svg.png" alt="Club Sport Herediano" class="team-main-image">
@@ -308,7 +323,6 @@
                         <p class="team-slogan">"Florenses"</p>
                     </div>
 
-                    <!-- Columna central con historial -->
                     <div class="team-section trophy-section">
                         <div class="section-header">
                             <i class="fas fa-trophy"></i> Historial
@@ -321,7 +335,6 @@
                         </ul>
                     </div>
 
-                     <!-- Columna de planilla actual -->
                      <div class="team-section squad-section">
                         <div class="section-header">
                             <i class="fas fa-futbol"></i> Planilla Actual
@@ -343,7 +356,7 @@
                     </div>
                 </div>
                 
-                <!-- Columna derecha con jugadores legendarios -->
+             
                 <div class="team-section players-section">
                     <div class="section-header">
                         <i class="fas fa-star"></i> Jugadores Legendarios
@@ -374,7 +387,7 @@
             <audio id="heredia-audio" src="frontend/Audios/Club Sport Herediano - Ninguno pudo con él (2010 - 2019) - Jagnarock.mp3"></audio>
         </div>
 
-                <!-- Pie de página con derechos reservados -->
+              
                 <div class="team-footer">
                     <p>© 2025 Club Sport Herediano. Todos los derechos reservados.</p>
                 </div>
@@ -390,7 +403,7 @@
                         <p class="team-slogan">"Brumosos"</p>
                     </div>
 
-                    <!-- Columna central con historial -->
+                 
                     <div class="team-section trophy-section">
                         <div class="section-header">
                             <i class="fas fa-trophy"></i> Historial
@@ -403,7 +416,6 @@
                         </ul>
                     </div>
 
-                    <!-- Columna de planilla actual -->
                     <div class="team-section squad-section">
                         <div class="section-header">
                             <i class="fas fa-futbol"></i> Planilla Actual
@@ -425,7 +437,7 @@
                     </div>
                 </div>
                 
-                <!-- Columna derecha con jugadores legendarios -->
+               
                 <div class="team-section players-section">
                     <div class="section-header">
                         <i class="fas fa-star"></i> Jugadores Legendarios
@@ -446,7 +458,7 @@
                     </div>
                 </div>
 
-               <!-- Agregar esto dentro de cada tarjeta de equipo, antes del footer -->
+               
           <div class="audio-player">
              <button class="audio-btn" onclick="toggleAudio('cartago-audio')">
             <i class="fas fa-play play-icon"></i>
@@ -457,13 +469,11 @@
         </div>
 
 
-                <!-- Pie de página con derechos reservados -->
                 <div class="team-footer">
                     <p>© 2025 Club Sport Cartaginés. Todos los derechos reservados.</p>
                 </div>
             </div>
 
-             <!-- Vista del equipo: Federacion Costarricense --> 
              <div class="team-card team-detail-card hidden" id="cr-info">
                 <div class="team-detail-layout">
                     <div class="team-main-info">
@@ -473,7 +483,6 @@
                         <p class="team-slogan">"La Tricolor"</p>
                     </div>
 
-                    <!-- Columna central con historial -->
                     <div class="team-section trophy-section">
                         <div class="section-header">    
                             <i class="fas fa-trophy"></i> Historial
@@ -486,7 +495,6 @@
                         </ul>
                     </div>
 
-                    <!-- Columna de planilla actual -->
                     <div class="team-section squad-section">
                         <div class="section-header">
                             <i class="fas fa-futbol"></i> Planilla Actual
@@ -508,7 +516,7 @@
                     </div>
                 </div>
                 
-                <!-- Columna derecha con jugadores legendarios -->
+               
                 <div class="team-section players-section">
                     <div class="section-header">
                         <i class="fas fa-star"></i> Jugadores Legendarios
@@ -540,19 +548,18 @@
                </div>
        
 
-                <!-- Pie de página con derechos reservados -->
+             
                 <div class="team-footer">
                     <p>© 2025 Federacion Costarricense de futbol. Todos los derechos reservados.</p>
                 </div>
             </div>
 
-            <!-- Botón de cerrar sesión -->
             <button id="logout-btn" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
             </button>
-        </div> <!-- Cierre del div team-info -->
+        </div>
         
-    </div> <!-- Cierre del div container -->
+    </div>
     
     
     <footer class="footer">
@@ -566,7 +573,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <!-- Inicializar Firebase -->
 <script>
-    // Tu configuración de Firebase
+
     const firebaseConfig = {
         apiKey: "AIzaSyADQv0ZMTn2eF7qJCsddK-iyFu1wfztb2U",
         authDomain: "ligapromericaregister.firebaseapp.com",
@@ -584,7 +591,34 @@
     console.log("Firebase Firestore disponible:", !!firebase.firestore);
 </script>
 
-<!-- Tu script principal se carga después de inicializar Firebase -->
+
+<div id="terms-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Términos y Condiciones</h2>
+        <div class="modal-body">
+            <p>Al registrarse en nuestra plataforma Fútbol CR, usted acepta los siguientes términos y condiciones:</p>
+            
+            <h3>1. Registro y Cuenta</h3>
+            <p>Para utilizar nuestros servicios, debe proporcionar información precisa y completa durante el proceso de registro. Usted es responsable de mantener la confidencialidad de su contraseña y cuenta.</p>
+            
+            <h3>2. Uso del Servicio</h3>
+            <p>Nuestro servicio proporciona información sobre equipos de fútbol costarricense. El contenido es únicamente para fines informativos y de entretenimiento.</p>
+            
+            <h3>3. Privacidad</h3>
+            <p>Su información personal será tratada de acuerdo con nuestra política de privacidad. Al registrarse, autoriza el uso de sus datos para mejorar su experiencia en la plataforma.</p>
+            
+            <h3>4. Restricciones de Edad</h3>
+            <p>Nuestros servicios están destinados a personas mayores de 18 años. Al registrarse, usted confirma que tiene al menos 18 años de edad.</p>
+            
+            <h3>5. Modificaciones</h3>
+            <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios entrarán en vigor inmediatamente después de su publicación.</p>
+        </div>
+        <button id="accept-terms" class="btn-primary">Aceptar</button>
+    </div>
+</div>
+
+
 <script src="script.js"></script>
 
 </body>

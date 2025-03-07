@@ -73,14 +73,14 @@ async registerUser(name, email, password, favoriteTeam) {
         
         console.log("Usuario creado:", user.uid);
         
-        // Agregamos un catch específico para errores de creación de usuario
+      
         try {
             // Guardar datos adicionales en Firestore
             await this.db.collection('users').doc(user.uid).set({
                 name: name,
                 favoriteTeam: favoriteTeam,
                 email: email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp() // Mejor usar el timestamp del servidor
+                createdAt: firebase.firestore.FieldValue.serverTimestamp() 
             });
             
             console.log("Datos guardados en Firestore");
@@ -96,8 +96,7 @@ async registerUser(name, email, password, favoriteTeam) {
             return this.currentUser;
         } catch (firestoreError) {
             console.error("Error al guardar en Firestore:", firestoreError);
-            // Si falla la escritura en Firestore, al menos notificamos al usuario
-            // pero no eliminamos su cuenta de autenticación
+          
             throw firestoreError;
         }
     } catch (error) {
@@ -261,16 +260,42 @@ async registerUser(name, email, password, favoriteTeam) {
     }
     
     // Validadores
-    const validators = {
-        email: (email) => {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        },
-        password: (password) => password.length >= 6,
-        name: (name) => name.trim().length > 0,
-        confirmPassword: (password, confirmPassword) => password === confirmPassword,
-        favoriteTeam: (team) => team !== ''
-    };
+
+const validators = {
+    email: (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    },
+    password: (password) => {
+        
+        const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        return re.test(password);
+    },
+    name: (name) => {
+        
+        return name.trim().length > 0 && !/\d/.test(name);
+    },
+    confirmPassword: (password, confirmPassword) => password === confirmPassword,
+    favoriteTeam: (team) => team !== '',
+    birthdate: (date) => {
+        if (!date) return false;
+        
+        
+        const birthDate = new Date(date);
+        const today = new Date();
+        
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        
+      
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        
+        return age >= 18;
+    },
+    terms: (checked) => checked
+};
     
     // Configurar eventos para mostrar/ocultar contraseñas
     document.querySelectorAll('.toggle-password').forEach(icon => {
@@ -311,102 +336,118 @@ async registerUser(name, email, password, favoriteTeam) {
     }
     
     // Validación formulario de registro
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            console.log("Formulario de registro enviado");
-            
-            // Limpiar mensajes de error previos
-            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            
-            // Obtener valores
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('register-confirm-password').value;
-            const favoriteTeam = document.getElementById('favorite-team').value;
-            
-            console.log("Datos del formulario:", { name, email, favoriteTeam });
-            
-            // Validar campos
-            let isValid = true;
-            
-            if (!validators.name(name)) {
-                document.getElementById('register-name-error').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!validators.email(email)) {
-                document.getElementById('register-email-error').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!validators.password(password)) {
-                document.getElementById('register-password-error').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!validators.confirmPassword(password, confirmPassword)) {
-                document.getElementById('register-confirm-password-error').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (!validators.favoriteTeam(favoriteTeam)) {
-                document.getElementById('favorite-team-error').style.display = 'block';
-                isValid = false;
-            }
-            
-            if (isValid) {
-                try {
-                    // Mostrar indicador de carga
-                    if (registerButton) {
-                        registerButton.disabled = true;
-                        registerButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-                    }
-                    
-                    console.log("Registrando usuario con Firebase...");
-                    
-                    // Registrar usuario con Firebase
-                    await userManager.registerUser(name, email, password, favoriteTeam);
-                    
-                    console.log("Usuario registrado exitosamente");
-                    
-                    // Mostrar pantalla de equipo
-                    showTeamInfo();
-                    
-                } catch (error) {
-                    console.error("Error en el registro:", error);
-                    
-                    // Manejar errores específicos de Firebase
-                    let errorMessage = 'Error al registrarse';
-                    
-                    if (error.code === 'auth/email-already-in-use') {
-                        errorMessage = 'Este correo electrónico ya está registrado';
-                    } else if (error.code === 'auth/weak-password') {
-                        errorMessage = 'La contraseña es demasiado débil';
-                    } else if (error.code === 'auth/invalid-email') {
-                        errorMessage = 'Correo electrónico inválido';
-                    } else if (error.message) {
-                        errorMessage = error.message;
-                    }
-                    
-                    const errorElement = document.getElementById('register-form-error');
-                    if (errorElement) {
-                        errorElement.textContent = errorMessage;
-                        errorElement.style.display = 'block';
-                    }
-                    
-                    // Restablecer botón
-                    if (registerButton) {
-                        registerButton.disabled = false;
-                        registerButton.innerHTML = 'Registrarse';
-                    }
+
+
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log("Formulario de registro enviado");
+        
+        // Limpiar mensajes de error previos
+        document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+        
+        // Obtener valores
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const confirmPassword = document.getElementById('register-confirm-password').value;
+        const favoriteTeam = document.getElementById('favorite-team').value;
+        const birthdate = document.getElementById('register-birthdate').value;
+        const termsAccepted = document.getElementById('terms-checkbox').checked;
+        
+        console.log("Datos del formulario:", { name, email, favoriteTeam, birthdate, termsAccepted });
+        
+        // Validar campos
+        let isValid = true;
+        
+        if (!validators.name(name)) {
+            document.getElementById('register-name-error').textContent = 'Ingrese su nombre completo sin números';
+            document.getElementById('register-name-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.email(email)) {
+            document.getElementById('register-email-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.password(password)) {
+            document.getElementById('register-password-error').textContent = 'La contraseña debe tener al menos 8 caracteres, incluyendo letras y números';
+            document.getElementById('register-password-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.confirmPassword(password, confirmPassword)) {
+            document.getElementById('register-confirm-password-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.favoriteTeam(favoriteTeam)) {
+            document.getElementById('favorite-team-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.birthdate(birthdate)) {
+            document.getElementById('register-birthdate-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (!validators.terms(termsAccepted)) {
+            document.getElementById('terms-checkbox-error').style.display = 'block';
+            isValid = false;
+        }
+        
+        if (isValid) {
+            try {
+                // Mostrar indicador de carga
+                if (registerButton) {
+                    registerButton.disabled = true;
+                    registerButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+                }
+                
+                console.log("Registrando usuario con Firebase...");
+                
+                // Registrar usuario con Firebase
+                await userManager.registerUser(name, email, password, favoriteTeam, birthdate);
+                
+                console.log("Usuario registrado exitosamente");
+                
+                // Mostrar pantalla de equipo
+                showTeamInfo();
+                
+            } catch (error) {
+                console.error("Error en el registro:", error);
+                
+              
+                let errorMessage = 'Error al registrarse';
+                
+                if (error.code === 'auth/email-already-in-use') {
+                    errorMessage = 'Este correo electrónico ya está registrado';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'La contraseña es demasiado débil';
+                } else if (error.code === 'auth/invalid-email') {
+                    errorMessage = 'Correo electrónico inválido';
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+                
+                const errorElement = document.getElementById('register-form-error');
+                if (errorElement) {
+                    errorElement.textContent = errorMessage;
+                    errorElement.style.display = 'block';
+                }
+                
+                // Restablecer botón
+                if (registerButton) {
+                    registerButton.disabled = false;
+                    registerButton.innerHTML = 'Registrarse';
                 }
             }
-        });
-    } else {
-        console.error("Elemento de formulario de registro no encontrado");
-    }
+        }
+    });
+} else {
+    console.error("Elemento de formulario de registro no encontrado");
+}
     
     // Validación formulario de inicio de sesión
     if (loginForm) {
@@ -520,7 +561,45 @@ function toggleAudio(audioId) {
         playIcon.style.display = 'inline-block';
         pauseIcon.style.display = 'none';
     }
+
+
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('terms-modal');
+    const termsLink = document.getElementById('terms-link');
+    const closeModal = document.querySelector('.close-modal');
+    const acceptButton = document.getElementById('accept-terms');
+    const termsCheckbox = document.getElementById('terms-checkbox');
+    
+    
+    if (termsLink) {
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (modal) modal.style.display = 'block';
+        });
+    }
+ 
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+        });
+    }
+    
+    if (acceptButton) {
+        acceptButton.addEventListener('click', () => {
+            if (modal) modal.style.display = 'none';
+            if (termsCheckbox) termsCheckbox.checked = true;
+        });
+    }
+    
+   
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
 
 // Manejo de errores globales
 window.addEventListener('error', (event) => {
